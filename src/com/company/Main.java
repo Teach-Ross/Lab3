@@ -16,6 +16,15 @@ public class Main {
         System.out.println(headerTwo);
     }
 
+    public static void printNumberSquareCube (int userInt ){
+
+        for (int i=1; i <= userInt; i++) {
+            String numData = String.format("%1$-12s %2$-12s %3$-12s", i, i * i, i * i * i);
+            System.out.println(numData);
+        }
+
+    }
+
     public static int getIntWithinRange (String prompt, int min, int max){
         int num;
 
@@ -41,18 +50,32 @@ public class Main {
 
     public static void main(String[] args) {
 
+        Scanner scnr = new Scanner(System.in);
 
-        int userInt = getIntWithinRange("Enter an integer: ", 0, 1290);
+        String input = "yes";
 
-        printHeader("Number","Squared", "Cubed");
+        do {
+            int userInt = getIntWithinRange("Enter an integer: (0-1290)", 0, 1290);
 
-        for (int i=1; i <= userInt; i++){
-            String result = String.format("%1$-12s %2$-12s %3$-12s", i, i*i, i*i*i);
-            System.out.println(result);
+            printHeader("Number","Squared", "Cubed");
+
+            printNumberSquareCube(userInt);
+
+            System.out.println("Continue? (Y/N)");
+            input = scnr.nextLine();
+            while(!input.equalsIgnoreCase("y") && !input.equalsIgnoreCase("n")) {
+                System.out.println("Input error");
+                System.out.println("Continue? (Y/N)");
+                input = scnr.nextLine();
+            }
+
+        } while (input.equalsIgnoreCase("y"));
+
+
         }
 
 
 
 
     }
-}
+
